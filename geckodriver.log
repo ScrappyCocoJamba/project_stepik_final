@@ -1,0 +1,15 @@
+1609234232228	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\SCRAPP~1\\AppData\\Local\\Temp\\rust_mozprofileggjagy"
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1609234244752	Marionette	INFO	Listening on port 49558
+1609234245116	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: http://selenium1py.pythonanywhere.com/en-gb/, line 753: ReferenceError: oscar is not defined
+JavaScript error: http://selenium1py.pythonanywhere.com/en-gb/accounts/login/, line 624: ReferenceError: oscar is not defined
+1609234252510	Marionette	INFO	Stopped listening on port 49558
+JavaScript error: resource://gre/modules/UrlClassifierListManager.jsm, line 691: TypeError: this.tablesData[table] is undefined
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
