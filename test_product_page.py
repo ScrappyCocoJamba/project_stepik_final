@@ -1,5 +1,12 @@
 from .pages.product_page import ProductPage
 import pytest
+"""
+Можно реализовать с помощью цикла "for", зная базовый линк, с помощью f-строки добавляем
+диапазон id промо акции от 0 до 9
+
+product_base_link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207"
+urls = [f"{product_base_link}/?promo=offer{no}" for no in range(10)]
+"""
 
 # pytest -v --tb=line --language=en test_product_page.py
 
