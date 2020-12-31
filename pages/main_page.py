@@ -16,6 +16,7 @@ from .locators import MainPageLocators
     login_page.should_be_login_page()
 """
 
+
 class MainPage(BasePage):         # класс MainPage наследник класса BasePage
 
     def go_to_login_page(self):
