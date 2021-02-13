@@ -12,6 +12,7 @@ urls = [f"{product_base_link}/?promo=offer{no}" for no in range(10)]
 # pytest -v --tb=line --language=en test_product_page.py
 
 link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
+link2 = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
 
 
 @pytest.mark.parametrize('link', ["http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
@@ -32,3 +33,15 @@ def test_guest_can_add_product_to_basket(browser, link):
     page.add_to_basket()
     page.check_product_added()
     page.check_basket_price()
+
+
+def test_guest_should_see_login_link_on_product_page(browser):
+    page = ProductPage(browser, link2)
+    page.open()
+    page.should_be_login_link()
+
+
+def test_guest_can_go_to_login_page_from_product_page(browser):
+    page = ProductPage(browser, link2)
+    page.open()
+    page.go_to_login_page()
