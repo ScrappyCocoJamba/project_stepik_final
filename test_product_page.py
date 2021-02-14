@@ -15,8 +15,8 @@ urls = [f"{product_base_link}/?promo=offer{no}" for no in range(10)]
 # pytest -v --tb=line --language=en test_product_page.py::test_guest_cant_see_product_in_basket_opened_from_product_page
 # pytest -v --tb=line --language=en -m login_user test_product_page.py
 
-link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
-link2 = "http://selenium1py.pythonanywhere.com/catalogue/the-city-and-the-stars_95/"
+link_promo = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
+link_product = "http://selenium1py.pythonanywhere.com/catalogue/the-city-and-the-stars_95/"
 login_link = "http://selenium1py.pythonanywhere.com/accounts/login/"
 
 
@@ -32,6 +32,7 @@ login_link = "http://selenium1py.pythonanywhere.com/accounts/login/"
                                       marks=pytest.mark.xfail),
                                   "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer8",
                                   "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer9"])
+@pytest.mark.need_review
 def test_guest_can_add_product_to_basket(browser, link):
     page = ProductPage(browser, link)
     page.open()
@@ -41,19 +42,21 @@ def test_guest_can_add_product_to_basket(browser, link):
 
 
 def test_guest_should_see_login_link_on_product_page(browser):
-    page = ProductPage(browser, link2)
+    page = ProductPage(browser, link_product)
     page.open()
     page.should_be_login_link()
 
 
+@pytest.mark.need_review
 def test_guest_can_go_to_login_page_from_product_page(browser):
-    page = ProductPage(browser, link2)
+    page = ProductPage(browser, link_product)
     page.open()
     page.go_to_login_page()
 
 
+@pytest.mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
-    page = ProductPage(browser, link2)    # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес
+    page = ProductPage(browser, link_product)    # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес
     page.open()                           # открываем страницу
     page.go_to_basket_page()              # выполняем метод страницы — переходим на страницу логина
     basket = BasketPage(browser, browser.current_url)    # Инициализируем BasketPage в теле теста
@@ -71,12 +74,13 @@ class TestUserAddToBasketFromProductPage():
         page.register_new_user(email, password)       # регистрируем нового пользователя
 
     def test_user_cant_see_success_message(self, browser):
-        page = ProductPage(browser, link)
+        page = ProductPage(browser, link_promo)
         page.open()
         page.should_not_be_success_message()
 
+    @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser):
-        page = ProductPage(browser, link)
+        page = ProductPage(browser, link_promo)
         page.open()
         page.add_to_basket()
         page.check_product_added()
